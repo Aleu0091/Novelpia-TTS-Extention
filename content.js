@@ -99,7 +99,7 @@ function observerContent() {
         closeButton.addEventListener("click", () => {
             stopFlag = true;
             speechSynthesis.cancel();
-            lines.forEach((line) => line.classList.remove("highlight"));
+            lines.forEach((line) => line.classList.remove("tts_line"));
             listenDiv.remove();
         });
 
@@ -236,9 +236,9 @@ function observerContent() {
 
         backBtn.addEventListener("click", () => {
             speechSynthesis.cancel();
-            if (prev) prev.classList.remove("highlight");
+            if (prev) prev.classList.remove("tts_line");
             const current = lines[index];
-            if (current) current.classList.remove("highlight");
+            if (current) current.classList.remove("tts_line");
             index = Math.max(0, index - 2);
             highlightNextLine();
         });
