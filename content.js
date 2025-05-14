@@ -1,4 +1,3 @@
-// 속도 설정값 불러오기
 let speed1 = localStorage.getItem("speed");
 let speed = speed1 !== null ? speed1 : 1;
 
@@ -24,15 +23,6 @@ function observerContent() {
     observer.observe(document.body, { childList: true, subtree: true });
 
     async function createLine(lines) {
-        const style = document.createElement("style");
-        style.textContent = `.highlight {
-            background-color: #FED349;
-            color: black;
-            transition: background-color 0.3s, color 0.3s;
-        }`;
-
-        document.head.appendChild(style);
-
         const listenDiv = document.createElement("div");
         listenDiv.id = "listenDiv";
         Object.assign(listenDiv.style, {
@@ -288,10 +278,10 @@ function observerContent() {
                 }
             }
 
-            lines.forEach((line) => line.classList.remove("highlight"));
+            lines.forEach((line) => line.classList.remove("tts_line"));
             const current = lines[index];
 
-            current.classList.add("highlight");
+            current.classList.add("tts_line");
             current.scrollIntoView({ behavior: "smooth", block: "center" });
             progressText.textContent = `${index + 1} / ${lines.length}`;
             rangeInput.value = index;
@@ -328,6 +318,7 @@ function observerContent() {
 function createListenButton() {
     const wrapper = document.querySelector(".menu-bottom-wrapper");
     if (!wrapper || wrapper.querySelector(".listen-btn-wrapper")) return;
+    const el = document.querySelector(".footer_btn");
 
     const item = document.createElement("div");
     item.className = "menu-bottom-item listen-btn-wrapper";
@@ -335,11 +326,11 @@ function createListenButton() {
     const icon = document.createElement("img");
     icon.src = "//images.novelpia.com/img/new/viewer/navbar/headphones.svg";
     icon.className = "footer_btn";
-    icon.style.filter = "invert(1)";
+    icon.style.filter = getComputedStyle(el).filter;
 
     const span = document.createElement("span");
     span.className = "footer_btn";
-    span.style.filter = "invert(1)";
+    span.style.filter = getComputedStyle(el).filter;
     span.textContent = "듣기";
 
     item.appendChild(icon);
