@@ -1,0 +1,19 @@
+{
+    "manifest_version": 3,
+    "name": "Novelpia TTS",
+    "version": "1.0",
+    "description": "노벨피아 본문을 읽어 줍니다.",
+    "permissions": ["storage", "activeTab"],
+    "content_scripts": [
+        {
+            "matches": ["*://novelpia.com/viewer/*"],
+            "js": ["content.js"]
+        }
+    ],
+
+    "icons": {
+        "16": "icon.png",
+        "48": "icon.png",
+        "128": "icon.png"
+    }
+}
